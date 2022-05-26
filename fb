@@ -1,0 +1,137 @@
+# practicemore
+package auto;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.Select;
+
+public class Facebook
+{
+
+	
+	
+ public static void main(String[] args) throws InterruptedException, IOException
+ {
+   System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_win32\\chromedriver.exe")	;
+   WebDriver driver= new ChromeDriver();
+   driver.navigate().to("http://www.facebook.com");
+  
+     Thread.sleep(5000);
+//   WebElement account=driver.findElement(By.xpath("//input[@name='email']"));
+  
+//   account.sendKeys("7972613498");
+   
+//   Thread.sleep(5000);
+//  WebElement creat =driver.findElement(By.));
+// creat.click();
+//    WebElement pw =driver.findElement(By.name("pass"));
+    
+//    pw.sendKeys("ramkadam");
+
+//    WebElement log =driver.findElement(By.name("login"));
+//     boolean result=log.isEnabled();
+     
+//     System.out.println(result);
+     
+ //    if(result==true)
+ //    {
+ //   	 log.click();
+ //   }
+     
+   WebElement creat= driver.findElement(By.xpath("//a[contains(text(),'Create New Account')]"));
+     boolean result=creat.isEnabled();
+     
+     System.out.println(result);
+     //websubmit
+     if(result==true)
+     {
+    	 creat.click();
+     }
+     Thread.sleep(5000);
+
+     WebElement nnam= driver.findElement(By.name("firstname"));
+     nnam.sendKeys("appa");
+     		
+     Thread.sleep(5000);
+
+  
+     WebElement sname= driver.findElement(By.name("lastname"));
+     sname.sendKeys("balavant");
+     
+     
+     Thread.sleep(5000);
+     
+     WebElement mob= driver.findElement(By.name("reg_email__"));
+     mob.sendKeys("7972613498");
+    
+     Thread.sleep(5000);
+
+     WebElement pw= driver.findElement(By.name( "reg_passwd__"));
+     pw.sendKeys("9420330381");
+   
+     Thread.sleep(4000);
+     
+     WebElement dt= driver.findElement(By.xpath("//select[@name='birthday_day']"));
+     Select list=new Select(dt);
+    // list.selectByValue("20");
+     list.selectByIndex(0);
+     Thread.sleep(4000);
+     
+ 
+     WebElement month= driver.findElement(By.name("birthday_month"));
+     Select list1=new Select(month);
+     list1.selectByVisibleText("Dec");
+     
+     Thread.sleep(4000);
+     
+     WebElement year= driver.findElement(By.name( "birthday_year"));
+     Select list2=new Select(year);
+     list2.selectByValue("1905");
+     
+     Thread.sleep(4000);
+     
+     WebElement sex =driver.findElement(By.xpath("//label[text()='Male']"));
+     boolean result2 =sex.isSelected();
+     System.out.println(result);
+     if(result2==false)
+     {
+    	 sex.click();
+     }
+   
+     Thread.sleep(5000);
+     
+     WebElement sign= driver.findElement(By.name("websubmit"));
+     boolean result3=sign.isEnabled();
+     
+     System.out.println(result3);
+     
+     if(result3==true)
+     {
+    	 sign.click();
+     }
+     Thread.sleep(5000);
+     
+     
+     
+     
+     
+    int i=0;
+ 	File source =((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    File dest =new File("E:\\Jscreenshot\\photo"+i+".jpeg");
+    FileHandler.copy(source, dest);
+    i++;
+    
+    Thread.sleep(5000);
+    
+    driver.close();
+ }	  
+
+}
